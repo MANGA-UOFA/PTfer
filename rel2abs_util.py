@@ -91,25 +91,27 @@ def get_abs_anchors(model_name1, model_name2, num_anchor, common_vocab, seed, al
         else:
             model3_embeddings = model3.embeddings.word_embeddings.weight.detach().cpu()
 
-    bert_vocab, _ = build_vocab(bert_tokenizer)
-    roberta_vocab, _ = build_vocab(roberta_tokenizer)
-
-    if model_name3 != None:
-        model_vocab3, _ = build_vocab(model_tokenizer3)
-
-    # with open(common_vocab, 'r') as f:
-    #     lines = f.readlines()
-    #     filtered_vocab = [x.strip() for x in lines]
-
-    # print('model 1 and 2 vocabs:', len(bert_vocab), len(roberta_vocab))
-    bert_vocab = vocab_cleaning(bert_vocab)
-    roberta_vocab = vocab_cleaning(roberta_vocab)
-
-    if model_name3 != None:
-        model_vocab3 = vocab_cleaning(model_vocab3)
-        filtered_vocab = list(set(bert_vocab) & set(roberta_vocab) & set(model_vocab3))
+    if common_vocab != None:
+        with open(common_vocab, 'r') as f:
+            lines = f.readlines()
+            filtered_vocab = [x.strip() for x in lines]
     else:
-        filtered_vocab = list(set(bert_vocab) & set(roberta_vocab))
+        bert_vocab, _ = build_vocab(bert_tokenizer)
+        roberta_vocab, _ = build_vocab(roberta_tokenizer)
+
+        if model_name3 != None:
+            model_vocab3, _ = build_vocab(model_tokenizer3)
+
+
+        print('model 1 and 2 vocabs:', len(bert_vocab), len(roberta_vocab))
+        bert_vocab = vocab_cleaning(bert_vocab)
+        roberta_vocab = vocab_cleaning(roberta_vocab)
+
+        if model_name3 != None:
+            model_vocab3 = vocab_cleaning(model_vocab3)
+            filtered_vocab = list(set(bert_vocab) & set(roberta_vocab) & set(model_vocab3))
+        else:
+            filtered_vocab = list(set(bert_vocab) & set(roberta_vocab))
 
     bert_filtered_indices = []
     roberta_filtered_indices = []
