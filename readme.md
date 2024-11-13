@@ -1,5 +1,5 @@
 # Zero-Shot Continuous Prompt Transfer: Generalizing Task Semantics Across Language Models
-PyTorch implementation of the paper
+PyTorch implementation of the paper. 
 
 ## Setup
 Install required packages using the following command:
@@ -85,4 +85,18 @@ from evaluate import EvaluatePrompt
 with
 ```python
 from evaluate_gpt import EvaluatePrompt
+```
+
+## Citation
+If you find our work interesting and useful, feel free to cite our publication:
+
+```bibtex
+@inproceedings{
+  wu2024zeroshot,
+  title={Zero-Shot Continuous Prompt Transfer: Generalizing Task Semantics Across Language Models},
+  author={Zijun Wu and Yongkang Wu and Lili Mou},
+  booktitle={The Twelfth International Conference on Learning Representations},
+  year={2024},
+  url={https://openreview.net/forum?id=26XphugOcS}
+}
 ```
