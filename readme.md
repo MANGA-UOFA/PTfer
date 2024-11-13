@@ -68,3 +68,21 @@ Use the script to run all relations
 ```bash
 bash get_emb_mix.sh
 ```
+
+### Cross-Model Transfer
+#### Getting prompt vectors from GPT-2
+An example of how to run OptimPrompt on GPT-2 models
+```bash
+cd gpt_code
+bash test_run.sh
+```
+
+#### Transfering prompts to GPT-2
+In order to evaluate the transfered prompt on GPT-2, you need to replace one line in `rel2abs_GO.py` file. Replace
+```python
+from evaluate import EvaluatePrompt
+```
+with
+```python
+from evaluate_gpt import EvaluatePrompt
+```
